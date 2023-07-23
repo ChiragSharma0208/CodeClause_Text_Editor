@@ -1,15 +1,18 @@
 const mongoose = require('mongoose');
 const Document=require('./Document')
+require('dotenv').config()
+
+
 
 
 
 const defaultValue=''
-mongoose.connect("mongodb+srv://chiragsharma20202:admin@cluster0.uusjeba.mongodb.net").then(()=>{
+mongoose.connect(`${process.env.DATABASE}`).then(()=>{
     console.log("Database Connected");})
 
-const io=require('socket.io')(3001,{
+const io=require('socket.io')(process.env.PORT||3001,{
     cors:{
-        origin:'http://localhost:3000',
+        // origin:'http://localhost:3000',
         methods:['GET','POST']
 
     }
